@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a2e;
+    /* Dark background */
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    /* White text */
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    color: #00fff2;
+    /* Bright cyan */
+    margin: 20px 0;
+    text-shadow: 0 0 10px rgba(0, 255, 242, 0.3);
+    /* Subtle glow effect */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.score-container {
+    background: #16213e;
+    /* Dark blue */
+    padding: 15px 25px;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(0, 255, 242, 0.1);
+}
+
+#game-board {
+    background: #16213e;
+    /* Dark blue */
+    padding: 15px;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 255, 242, 0.1);
+}
+
+.tile {
+    width: 100px;
+    height: 100px;
+    background: #1a1a2e;
+    /* Dark background */
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    font-weight: bold;
+    color: #ffffff;
+    transition: all 0.2s;
+}
+
+/* Tile colors for different numbers */
+.tile[data-value="2"] {
+    background: #0f3460;
+    color: #ffffff;
+}
+
+.tile[data-value="4"] {
+    background: #1a4b8c;
+    color: #ffffff;
+}
+
+.tile[data-value="8"] {
+    background: #2857a3;
+    color: #ffffff;
+}
+
+.tile[data-value="16"] {
+    background: #3461c7;
+    color: #ffffff;
+}
+
+.tile[data-value="32"] {
+    background: #4169e1;
+    color: #ffffff;
+}
+
+.tile[data-value="64"] {
+    background: #4f77f1;
+    color: #ffffff;
+}
+
+.tile[data-value="128"] {
+    background: #5a85ff;
+    color: #ffffff;
+}
+
+.tile[data-value="256"] {
+    background: #699fff;
+    color: #ffffff;
+}
+
+.tile[data-value="512"] {
+    background: #75acff;
+    color: #ffffff;
+}
+
+.tile[data-value="1024"] {
+    background: #84baff;
+    color: #ffffff;
+}
+
+.tile[data-value="2048"] {
+    background: #93c8ff;
+    color: #ffffff;
+}
+
+#name-input-container {
+    background: #16213e;
+    /* Dark blue */
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 242, 0.1);
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    border: 2px solid #00fff2;
+    border-radius: 4px;
+    background: #1a1a2e;
+    color: #ffffff;
+    outline: none;
+}
+
+input::placeholder {
+    color: #516d9c;
+}
+
+button {
+    background: #00fff2;
+    color: #1a1a2e;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #00ccc1;
+    box-shadow: 0 0 15px rgba(0, 255, 242, 0.3);
+}
+
+/* Add glow effect when tiles merge */
+.tile-merged {
+    animation: merge 0.2s ease-in-out;
+    box-shadow: 0 0 20px rgba(0, 255, 242, 0.3);
+}
+
+@keyframes merge {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
