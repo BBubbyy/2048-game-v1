@@ -146,8 +146,20 @@ function checkGameOver() {
     }
 
     // Game is over
-    alert(`Game Over! Final score: ${score}`);
+    const playAgain = confirm(`Game Over! Final score: ${score}\n\nWould you like to play again?`);
+    if (playAgain) {
+        restartGame();
+    }
     return true;
+}
+
+// Restart game function
+function restartGame() {
+    score = 0;
+    board = Array(4).fill().map(() => Array(4).fill(0));
+    addNewTile();
+    addNewTile();
+    updateDisplay();
 }
 
 // Update high score
