@@ -2,6 +2,58 @@ let board = [];
 let score = 0;
 let playerName = '';
 let gameStarted = false;
+let highScores = [];
+
+// Load high scores from localStorage
+function loadHighScores() {
+    const savedScores = localStorage.getItem('highScores');
+    highScores = savedScores ? JSON.parse(savedScores) : [];
+    updateHighScoresList();
+}
+
+// Save high scores to localStorage
+function saveHighScore() {
+    highScores.push({
+        name: playerName,
+        score: score,
+        date: new Date().toLocaleDateString()
+    });
+
+    // Sort by score (highest first) and keep only top 10
+    highScores.sort((a, b) => b.score - a.score);
+    if (highScores.length > 10) {
+        highScores = highScores.slice(0, 10);
+    }
+
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    updateHighScoresList();
+}
+
+// Update the high scores display
+function updateHighScoresList() {
+    const list = document.getElementById('high-scores-list');
+    list.innerHTML = '';
+
+    highScores.forEach((entry, index) => {
+        const div = document.createElement('div');
+        div.className = 'high-score-entry';
+        div.innerHTML = `
+            <span>${index + 1}. ${entry.name}</span>
+            <span>${entry.score} (${entry.date})</span>
+        `;
+        list.appendChild(div);
+    });
+}
+
+// Clear all high scores
+function clearHighScores() {
+    if (confirm('Are you sure you want to clear all high scores?')) {
+        highScores = [];
+        localStorage.removeItem('highScores');
+        updateHighScoresList();
+        document.getElementById('high-score').textContent = '0';
+    }
+}
 
 // Initialize the game board
 function initBoard() {
@@ -146,6 +198,7 @@ function checkGameOver() {
     }
 
     // Game is over
+    saveHighScore();
     const playAgain = confirm(`Game Over! Final score: ${score}\n\nWould you like to play again?`);
     if (playAgain) {
         restartGame();
@@ -190,11 +243,8 @@ function startGame() {
     gameStarted = true;
     initBoard();
 
-    // Load high score from localStorage
-    const savedHighScore = localStorage.getItem('highScore');
-    if (savedHighScore) {
-        document.getElementById('high-score').textContent = savedHighScore;
-    }
+    // Load high scores
+    loadHighScores();
 }
 
 // Handle keyboard events

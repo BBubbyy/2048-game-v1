@@ -199,3 +199,43 @@ button:hover {
         transform: scale(1);
     }
 }
+
+.leaderboard {
+    background: #16213e;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 242, 0.1);
+}
+
+.leaderboard h2 {
+    color: #00fff2;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+#high-scores-list {
+    color: #ffffff;
+    text-align: left;
+    margin: 10px 0;
+}
+
+.high-score-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 255, 242, 0.2);
+}
+
+.high-score-entry:last-child {
+    border-bottom: none;
+}
+
+.clear-scores {
+    margin-top: 10px;
+    background: #ff4444;
+}
+
+.clear-scores:hover {
+    background: #cc0000;
+}
